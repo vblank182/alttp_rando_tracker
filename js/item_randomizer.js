@@ -113,7 +113,7 @@ window.item_randomizer = {
       },
     },
   },
-  'Fat Fairy': {
+  'Pyramid Fairy': {
     count: 2,
     region: 'Pyramid Area',
     tag: 'dw',

@@ -223,10 +223,11 @@ $(() => {
         this.caves = window.caves;
         this.overworld_items = window.overworldLocations;
       } else if (this.state.mode === 'item') {
-        this.caves = window.item_randomizer;
-        this.overworld_items = window.overworldLocations;
+        this.caves = window.item_randomizer;  // Get data from JS file
+        this.overworld_items = window.overworldLocations;  // Get data from JS file
       }
 
+      //// Item Mode
       for (const caveName of Object.keys(this.caves)) {
         const hasDrop =
           Object.entries(this.caves[caveName].entrance).find(i => i[1].drop === true) !== undefined;
@@ -236,6 +237,8 @@ $(() => {
           (!hasDrop &&
             caveName !== 'Useless' &&
             Object.keys(this.caves[caveName].entrance).length > 1);
+
+        // Loop through all entrances and load data into doorLocations and itemCounts
         for (const doorName of Object.keys(this.caves[caveName].entrance)) {
           this.doorLocations[doorName] = this.caves[caveName].entrance[doorName];
           this.doorLocations[doorName].cave = caveName;
@@ -246,8 +249,14 @@ $(() => {
           if (!this.doorLocations[doorName].tag) {
             this.doorLocations[doorName].tag = this.caves[caveName].tag;
           }
+
+          if (!this.doorLocations[doorName].count) {  // Add count to doorLoacations data
+            this.doorLocations[doorName].count = this.caves[caveName].count;
+          }
         }
       }
+
+      //// Entrance Mode
       for (const name of Object.keys(this.overworld_items)) {
         if (this.state.mode === 'entrance' || !this.overworld_items[name].entranceOnly) {
           this.doorLocations[name] = this.overworld_items[name];
@@ -476,7 +485,10 @@ $(() => {
         else locationDiv = LocationTracker.createSVGRect(rectSize);
         locationDiv.css('left', door.x);
         locationDiv.css('top', door.y);
+
         locationDiv.data('location', name);
+        locationDiv.data('items', items);////////
+
         locationDiv.click((event) => {
           event.preventDefault();
 
@@ -531,8 +543,11 @@ $(() => {
         locationDiv.mouseenter((event) => {
           const locationName = $(event.currentTarget).data('location');
           const caveName = this.doorLocations[locationName].cave;
+          const itemCount = this.doorLocations[locationName].count;
 
           let text = locationName;
+          text += " (" + itemCount + ")" // Add on the item count for this location to 'text'
+
           if (this.annotateLocationName) {
             if (caveName && caveName !== 'Useless') {
               text = `Connect <span style="color: green">${this
@@ -560,6 +575,7 @@ $(() => {
               this.doorLocations[locationReverseState.door].rect.addClass('highlighted_reverse');
             }
           }
+          // The contents of 'text' are displayed in map footer here
           this.ui.mapFooter.html(text);
         });
         locationDiv.mouseleave(() => {
