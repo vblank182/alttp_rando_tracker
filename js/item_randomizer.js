@@ -578,7 +578,9 @@ window.item_randomizer = {
         x: '45.43%',
         y: '22.62%',
         state(items) {
-          return items.access('dm') ? 'available' : '';
+          //return items.access('dm') ? 'available' : '';
+          if (items.has('lantern')) return 'available';
+          return items.access('dm') ? 'visible' : '';
         },
       },
     },

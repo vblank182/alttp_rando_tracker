@@ -56,7 +56,7 @@ window.overworldLocations = {
       return 'available';
     },
   },
-  'Race game reward': {
+  'Running Game': {
     region: 'Kakariko',
     tag: 'lw',
     x: '3.65%',
@@ -68,7 +68,7 @@ window.overworldLocations = {
         : 'visible';
     },
   },
-  'Shovel dig': {
+  'Shovel Dig': {
     region: 'Light World South',
     tag: 'lw',
     x: '29.45%',
@@ -77,7 +77,7 @@ window.overworldLocations = {
       return items.has('shovel') ? 'available' : '';
     },
   },
-  'Dam sunken item': {
+  'Dam Sunken Item': {
     region: 'Light World South',
     tag: 'lw',
     entranceOnly: true,
@@ -123,7 +123,7 @@ window.overworldLocations = {
       return items.has('flippers') ? 'visible' : '';
     },
   },
-  'Hobo under the bridge': {
+  'Hobo Under Bridge': {
     region: 'Lake Hylia',
     tag: 'lw',
     x: '70.00%',
@@ -160,7 +160,7 @@ window.overworldLocations = {
       return items.has('glove') ? 'visible' : '';
     },
   },
-  'Digging game': {
+  'Digging Game': {
     region: 'Village of Outcasts',
     tag: 'dw',
     x: '4.11%',
@@ -178,7 +178,7 @@ window.overworldLocations = {
       return items.has('glove2') && items.access('dwwest') ? 'available' : '';
     },
   },
-  'Blacksmith frog': {
+  'Blacksmith Frog': {
     region: 'Village of Outcasts',
     tag: 'dw',
     x: '13.50%',
@@ -187,7 +187,7 @@ window.overworldLocations = {
       return items.has('glove2') && items.access('dwwest') ? 'available' : '';
     },
   },
-  'Haunted Grove': {
+  'Flute Boy in Haunted Grove': {
     region: 'Dark World South',
     tag: 'dw',
     x: '29.91%',

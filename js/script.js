@@ -227,7 +227,7 @@ $(() => {
         this.overworld_items = window.overworldLocations;  // Get data from JS file
       }
 
-      //// Item Mode
+      //// Entrance Items
       for (const caveName of Object.keys(this.caves)) {
         const hasDrop =
           Object.entries(this.caves[caveName].entrance).find(i => i[1].drop === true) !== undefined;
@@ -253,14 +253,17 @@ $(() => {
           if (!this.doorLocations[doorName].count) {  // Add count to doorLoacations data
             this.doorLocations[doorName].count = this.caves[caveName].count;
           }
+
+
         }
       }
 
-      //// Entrance Mode
+      //// Non-entrance Items
       for (const name of Object.keys(this.overworld_items)) {
         if (this.state.mode === 'entrance' || !this.overworld_items[name].entranceOnly) {
           this.doorLocations[name] = this.overworld_items[name];
           this.doorLocations[name].overworld = true;
+          this.doorLocations[name].count = 1;
         }
       }
     }
@@ -487,7 +490,6 @@ $(() => {
         locationDiv.css('top', door.y);
 
         locationDiv.data('location', name);
-        locationDiv.data('items', items);////////
 
         locationDiv.click((event) => {
           event.preventDefault();
@@ -545,8 +547,7 @@ $(() => {
           const caveName = this.doorLocations[locationName].cave;
           const itemCount = this.doorLocations[locationName].count;
 
-          let text = locationName;
-          text += ` (` + itemCount.toString() + `)` // Add on the item count for this location to 'text'
+          let text = locationName + ` (` + itemCount.toString() + `)` // Add on the item count for this location to 'text';
 
           if (this.annotateLocationName) {
             if (caveName && caveName !== 'Useless') {
