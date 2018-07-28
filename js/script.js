@@ -546,7 +546,7 @@ $(() => {
           const itemCount = this.doorLocations[locationName].count;
 
           let text = locationName;
-          text += " (" + itemCount + ")" // Add on the item count for this location to 'text'
+          text += ` (` + itemCount.toString() + `)` // Add on the item count for this location to 'text'
 
           if (this.annotateLocationName) {
             if (caveName && caveName !== 'Useless') {
