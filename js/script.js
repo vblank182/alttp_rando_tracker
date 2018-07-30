@@ -580,9 +580,6 @@ $(() => {
           const itemRequires = this.doorLocations[locationName].requires;
 
 
-
-
-
           // Add required items
           let required = '';
           if (this.state.reqs == true) {
@@ -975,6 +972,10 @@ $(() => {
         },
         shield: {
           values: ['none', 'shield1', 'shield2', 'shield3'],
+          type: 'equipment',
+        },
+        magic: {
+          values: ['magic', 'halfmagic'],
           type: 'equipment',
         },
       };

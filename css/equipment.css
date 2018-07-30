@@ -6,51 +6,17 @@
   background-image: url('../img/equipment.png');
 }
 
-.equipment.mail {
-  background-position: 0 0%;
-  background-size: 100%;
-}
-.equipment.mail2 {
-  background-position: 0 16.559692%;
-  background-size: 100%;
-}
-.equipment.mail3 {
-  background-position: 0 33.119384%;
-  background-size: 100%;
-}
-.equipment.shield1 {
-  background-position: 0 45.907473%;
-  background-size: 200%;
-}
-.equipment.shield2 {
-  background-position: 0 53.618031%;
-  background-size: 200%;
-}
-.equipment.shield3 {
-  background-position: 0 61.328588%;
-  background-size: 200%;
-}
-.equipment.sword1 {
-  background-position: 0 69.039146%;
-  background-size: 200%;
-}
-.equipment.sword2-butter {
-  background-position: 0 76.749703%;
-  background-size: 200%;
-}
-.equipment.sword2-tempered {
-  background-position: 0 84.460261%;
-  background-size: 200%;
-}
-.equipment.sword2 {
-  background-position: 0 92.170819%;
-  background-size: 200%;
-}
-.equipment.shield {
-  background-position: 0 96.228571%;
-  background-size: 400%;
-}
-.equipment.sword {
-  background-position: 0 100%;
-  background-size: 400%;
-}
+.equipment.mail { background-position: 0 0%; background-size: 100%; }
+.equipment.mail2 { background-position: 0 14.285714%; background-size: 100%; }
+.equipment.mail3 { background-position: 0 28.571429%; background-size: 100%; }
+.equipment.halfmagic { background-position: 0 40%; background-size: 200%; }
+.equipment.magic { background-position: 0 46.666667%; background-size: 200%; }
+.equipment.shield1 { background-position: 0 53.333333%; background-size: 200%; }
+.equipment.shield2 { background-position: 0 60%; background-size: 200%; }
+.equipment.shield3 { background-position: 0 66.666667%; background-size: 200%; }
+.equipment.sword1 { background-position: 0 73.333333%; background-size: 200%; }
+.equipment.sword2-butter { background-position: 0 80%; background-size: 200%; }
+.equipment.sword2-tempered { background-position: 0 86.666667%; background-size: 200%; }
+.equipment.sword2 { background-position: 0 93.333333%; background-size: 200%; }
+.equipment.shield { background-position: 0 96.774194%; background-size: 400%; }
+.equipment.sword { background-position: 0 100%; background-size: 400%; }
