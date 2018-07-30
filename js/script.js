@@ -12,6 +12,7 @@ $(() => {
       this.state = {
         showUseless: true,
         mode: 'item',
+        reqs: 0,
         locations: [],
         items: {},
         mapHeight: -1,
@@ -26,6 +27,15 @@ $(() => {
 
     set mode(value) {
       this.state.mode = value;
+      this.save();
+    }
+
+    get reqs() {
+      return this.state.reqs;
+    }
+
+    set reqs(value) {
+      this.state.reqs = value;
       this.save();
     }
 
@@ -254,6 +264,15 @@ $(() => {
             this.doorLocations[doorName].count = this.caves[caveName].count;
           }
 
+          if (!this.doorLocations[doorName].requires) {  // Add requirements to doorLoacations data
+            if (!this.caves[caveName].requires) {
+                this.doorLocations[doorName].requires = '';
+            }
+            else {
+              this.doorLocations[doorName].requires = this.caves[caveName].requires;
+            }
+          }
+
 
         }
       }
@@ -264,6 +283,7 @@ $(() => {
           this.doorLocations[name] = this.overworld_items[name];
           this.doorLocations[name].overworld = true;
           this.doorLocations[name].count = 1;
+          this.doorLocations[name].requires = '';
         }
       }
     }
@@ -275,15 +295,20 @@ $(() => {
 
       this.ui.saveOptionsButton.click(() => {
         const randomizerType = $('#option_modal input[name=randomizer_type]:checked');
+        const accessReqs = $('#option_modal input[name=access_reqs]');
         console.log(`Randomizer type:${randomizerType.val()}`);
+        console.log(`Access requirements:${accessReqs.prop('checked')}`);
 
-        if (this.state.mode !== randomizerType.val()) {
+        if (this.state.mode !== randomizerType.val() || this.state.reqs != accessReqs.prop('checked') )
+        {
           this.state.mode = randomizerType.val();
+          this.state.reqs = accessReqs.prop('checked');
           this.state.reset();
           this.setupTracker();
         }
       });
 
+      /// Set form button states to match saved settings
       this.ui.optionModal.on('show.bs.modal', () => {
         const oldRandomizerType = $('#option_modal input[name=randomizer_type]:checked');
         oldRandomizerType.prop('checked', false);
@@ -293,6 +318,12 @@ $(() => {
         );
         newRandomizerTypeButton.prop('checked', true);
         newRandomizerTypeButton.parent().addClass('active');
+
+        const accessReqs = $('#option_modal input[name=access_reqs]');
+        if (!this.state.reqs) {
+            this.state.reqs = false;
+        }
+        accessReqs.prop('checked', this.state.reqs).change();
       });
     }
 
@@ -546,8 +577,35 @@ $(() => {
           const locationName = $(event.currentTarget).data('location');
           const caveName = this.doorLocations[locationName].cave;
           const itemCount = this.doorLocations[locationName].count;
+          const itemRequires = this.doorLocations[locationName].requires;
 
-          let text = locationName + ` (` + itemCount.toString() + `)` // Add on the item count for this location to 'text';
+
+
+
+
+          // Add required items
+          let required = '';
+          if (this.state.reqs == true) {
+            if (itemRequires == '') {
+                required = '';
+            }
+            else {
+                // Compile images for required items
+                let reqimgs = '';
+                const items = ['bomb', 'bombos', 'book', 'boots', 'bottle', 'bow-silverarrows', 'bow', 'byrna', 'cape', 'ether', 'firerod', 'flippers', 'flute', 'glove', 'glove2', 'hammer', 'hookshot', 'icerod', 'lantern', 'mirror', 'moonpearl', 'mushroom', 'net', 'powder', 'quake', 'shovel', 'somaria'];
+                items.forEach(item => {
+                    if (itemRequires.includes(item)) {
+                        reqimgs += `<img src="img/pretty/`+ item +`.png" class="mini">`
+                    };
+                });
+
+                // Add images to map footer
+                required = `&nbsp;&nbsp;&mdash;&nbsp;&nbsp;[` + reqimgs + `]`;
+            }
+          }
+
+
+          let text = locationName + ` (` + itemCount.toString() + `)` + required; // Add on the item count for this location to 'text'
 
           if (this.annotateLocationName) {
             if (caveName && caveName !== 'Useless') {

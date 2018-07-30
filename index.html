@@ -14,6 +14,10 @@
   <!-- Bootstrap -->
   <link rel="stylesheet" href="libs/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- Bootstrap Toggle -->
+  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+  <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
   <!-- DataTables -->
   <link rel="stylesheet" type="text/css" href="libs/datatables/1.10.15/datatables.min.css">
   <script type="text/javascript" charset="utf-8" src="libs/datatables/1.10.15/datatables.min.js"></script>
@@ -76,8 +80,8 @@
         <div class="modal-body">
           <form class="form-horizontal" role="form">
             <div class="form-group">
-              <label for="randomizer_type" class="col-sm-2 control-label">Type</label>
-              <div class="col-sm-10" id="randomizer_type">
+              <label for="randomizer_type" class="col-sm-4 control-label">Type</label>
+              <div class="col-sm-8" id="randomizer_type">
                 <div class="btn-group" role="group" aria-label="..." data-toggle="buttons">
                   <label class="btn btn-default">
                     <input type="radio" name="randomizer_type" id="randomizer_type_item" value="item">Item
@@ -86,6 +90,12 @@
                     <input type="radio" name="randomizer_type" id="randomizer_type_entrance" value="entrance">Entrance
                   </label>
                 </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="access_reqs" class="col-sm-4 control-label">Show Access Requirements</label>
+              <div class="col-sm-8" id="access_reqs">
+                <input type="checkbox" data-toggle="toggle" id="access_reqs_toggle" name="access_reqs">
               </div>
             </div>
           </form>

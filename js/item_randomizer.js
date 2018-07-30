@@ -244,6 +244,7 @@ window.item_randomizer = {
   },
   'Ice Rod Cave': {
     count: 1,
+    requires: 'bomb',
     region: 'Lake Hylia',
     tag: 'lw',
     entrance: {

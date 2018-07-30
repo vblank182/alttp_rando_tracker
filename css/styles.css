@@ -22,6 +22,12 @@ footer {
   margin: 20px;
 }
 
+.mini{
+  width: 16px;
+  height: 16px;
+  vertical-align: text-bottom;
+}
+
 :root {
   --location-size: 24px;
   --location-border-width: 5px;
