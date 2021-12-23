@@ -534,8 +534,8 @@ window.item_randomizer = {
         x: '34.05%',
         y: '55.88%',
         state(items) {
-          return items.has('hammer') ||
-          (items.has('mirror') && items.has('glove2') && items.access('dwwest'))
+		  return (items.has('hammer') && items.has('powder')) ||
+          (items.has('mirror') && items.has('glove2') && items.has('powder') && items.access('dwwest'))
             ? 'available'
             : '';
         },
